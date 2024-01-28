@@ -1,6 +1,5 @@
 outs:
 - md5: cf2171eb3f04652c397db81b7eb75790
   size: 376316
-  isexec: true
   hash: md5
   path: NFLX.csv

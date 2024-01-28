@@ -1,0 +1,7 @@
+service: "service:service"
+include:
+  - "service.py"
+python:
+  requirements_txt: "./requirements.txt"
+models:
+  - "netflixmodel:latest"

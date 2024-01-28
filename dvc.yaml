@@ -15,3 +15,8 @@ stages:
     - data/preprocessed/train.csv
     outs:
     - model/model.json
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step

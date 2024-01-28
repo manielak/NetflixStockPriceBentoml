@@ -5,6 +5,7 @@ import bentoml
 from prophet import Prophet
 from prophet.serialize import model_to_json
 from sklearn.metrics import mean_squared_error
+from dvclive import Live
 
 if __name__ == "__main__":
     train_data_path = sys.argv[1]
@@ -23,8 +24,10 @@ if __name__ == "__main__":
     actual_data = test_data["Close"].values
     predicted_data = forecast["yhat"].values
 
-    mse = mean_squared_error(actual_data, predicted_data)
-    print(f"Mean Squared Error: {mse}")
+    with Live() as live:
+        mse = mean_squared_error(actual_data, predicted_data)
+        print(f"Mean Squared Error: {mse}")
+        live.log_metric("mse", mse)
 
     model_path = Path("model")
     model_path.mkdir(parents=True, exist_ok=True)
