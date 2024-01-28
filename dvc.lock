@@ -1,0 +1,42 @@
+schema: '2.0'
+stages:
+  01_preprocess:
+    cmd: python3 01_preprocess.py data/NFLX.csv data/preprocessed/train.csv data/preprocessed/test.csv
+    deps:
+    - path: 01_preprocess.py
+      hash: md5
+      md5: c46281547f5c285fe571d1721d2398c2
+      size: 517
+    - path: data/NFLX.csv
+      hash: md5
+      md5: cf2171eb3f04652c397db81b7eb75790
+      size: 376316
+    outs:
+    - path: data/preprocessed/test.csv
+      hash: md5
+      md5: 14fcaa47cb0156244a0da2dd8d4f0a71
+      size: 21695
+    - path: data/preprocessed/train.csv
+      hash: md5
+      md5: e62b4a75ea9c38fa6f179b63b3c79039
+      size: 89743
+  02_train:
+    cmd: python3 02_train.py data/preprocessed/train.csv data/preprocessed/test.csv
+    deps:
+    - path: 02_train.py
+      hash: md5
+      md5: 7e9981a6628ea090153014a2815be38c
+      size: 1134
+    - path: data/preprocessed/test.csv
+      hash: md5
+      md5: 14fcaa47cb0156244a0da2dd8d4f0a71
+      size: 21695
+    - path: data/preprocessed/train.csv
+      hash: md5
+      md5: e62b4a75ea9c38fa6f179b63b3c79039
+      size: 89743
+    outs:
+    - path: model/model.json
+      hash: md5
+      md5: 4ec7e09f52f0316b2e068c64b5eafb28
+      size: 690067

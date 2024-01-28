@@ -1,0 +1,17 @@
+stages:
+  01_preprocess:
+    cmd: python3 01_preprocess.py data/NFLX.csv data/preprocessed/train.csv data/preprocessed/test.csv
+    deps:
+    - 01_preprocess.py
+    - data/NFLX.csv
+    outs:
+    - data/preprocessed/test.csv
+    - data/preprocessed/train.csv
+  02_train:
+    cmd: python3 02_train.py data/preprocessed/train.csv data/preprocessed/test.csv
+    deps:
+    - 02_train.py
+    - data/preprocessed/test.csv
+    - data/preprocessed/train.csv
+    outs:
+    - model/model.json
